@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 900px;
+            height: 350px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .container>*{
+            position: absolute;
+        }
+        .arrow{
+            width: calc(100%);
+            display: flex;
+            justify-content: space-between;
+            top: calc(50% - 25px);
+        }
+        .frame{
+            width: calc(100% - 100px);
+            height: 350px;
+            border-radius: 50px;
+            margin-left: 50px;
+            overflow: hidden;
+        }
+        .slider{
+            width: calc(100%*4);
+            display: flex;
+            transition: 0.3s;
+        }
+        .slider>img{
+            display: block;
+        }
+        .btns{
+            width: 200px;
+            height: 10PX;
+            display: flex;
+            justify-content: space-between;
+            top: calc(92.5%);
+            left: calc(50% - 100px);
+            opacity: 0.8;
+        }
+        .btn{
+            width: 60px;
+            height: 10px;
+            background-color: silver;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="arrow">
+            <img src="./images/arrow_left.png" alt="arrow_left" width="50px" height="50px">
+            <img src="./images/arrow_right.png" alt="arrow_right" width="50px" height="50px">
+        </div>
+        <div class="frame">
+            <div class="slider">
+                <img src="./images/slide01.jpg" alt="slide01">
+                <img src="./images/slide02.jpg" alt="slide02">
+                <img src="./images/slide03.jpg" alt="slide03">
+                <img src="./images/slide01.jpg" alt="slide01">
+            </div>
+            
+        </div>
+        <div class="btns">
+            <div class="btn1 btn"></div>
+            <div class="btn2 btn"></div>
+            <div class="btn3 btn"></div>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slider>img');
+            let width = slides[0].clientWidth;
+            let move = 0
+            let page = 0;
+            
+            setInterval(()=>{  
+                if(page==3){
+                    page = 0;
+                    move = 0;
+                    slider.style.transition = '0s'
+                }
+                page++;
+                move += width;     
+                slider.style.transform = `translate(-${move}px)`
+                slider.style.transition = '0.3s'   
+            },1000)
+        } 
+    </script>
+</body>
+</html>
