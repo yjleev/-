@@ -34,7 +34,7 @@
         .slider{
             width: calc(100%*4);
             display: flex;
-            transition: 0.3s;
+            transition: 0.5s ease-in-out;
         }
         .slider>img{
             display: block;
@@ -78,25 +78,43 @@
         </div>
     </div>
     <script>
-        window.onload = function(){
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slider>img');
-            let width = slides[0].clientWidth;
-            let move = 0
-            let page = 0;
-            
-            setInterval(()=>{  
-                if(page==3){
-                    page = 0;
+        const slider = document.querySelector('.slider');
+        const arrow = document.querySelector('.arrow');
+        const btns = document.querySelector('.btns'); 
+        const btn1 = document.querySelector('.btns>.btn1'); 
+        const btn2 = document.querySelector('.btns>.btn2'); 
+        const btn3 = document.querySelector('.btns>.btn3'); 
+        const arrow_left = document.querySelector('.arrow>img:nth-child(1)');
+        const arrow_right = document.querySelector('.arrow>img:nth-child(2)');
+        let width = 800, move = 0;
+
+        setInterval(()=>{  
+            move += width;
+            slider.style.transition = '0.5s ease-in-out';  
+            slider.style.transform = `translate(-${move}px)`;  
+            if(move == width*3){
+                setTimeout(()=>{
                     move = 0;
-                    slider.style.transition = '0s'
-                }
-                page++;
-                move += width;     
-                slider.style.transform = `translate(-${move}px)`
-                slider.style.transition = '0.3s'   
-            },1000)
-        } 
+                    slider.style.transition = '0s';
+                    slider.style.transform = `translate(0px)`; 
+                },2500);
+            }
+        },3000)
+
+        btns.addEventListener('click', (e)=>{
+            if(e.target == btn1){
+                move = 0;
+            }
+            else if(e.target == btn2){
+                move = width*1;
+            }
+            else if(e.target == btn3){
+                move = width*2;
+            }
+            slider.style.transform = `translate(-${move}px)`;
+        });
+
+        
     </script>
 </body>
 </html>
