@@ -83,7 +83,7 @@ img{
     color: #323232;
 }
 .slide{
-    width: 500px;
+    width: 800px;
     height: 350px;
     overflow: hidden;
 }
@@ -104,4 +104,125 @@ img{
 }
 .slide li:nth-child(3){
     background: url(../images/slide03.jpg);
+}
+
+.content{
+    display: flex;
+}
+.content>article{
+    width: calc(100%/3);
+    height: 200px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.content-title{
+    color: #333;
+    font-size: 17px;
+    margin-bottom: 17px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #333;
+}
+.content-title::before{
+    content: "";
+    width: 4px;
+    height: 15px;
+    display: inline-block;
+    background-color: #276ebf;
+    margin-right: 10px;
+}
+.notice a{
+    display: block;
+    line-height: 170%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.notice a:hover{
+    background-color: #67a9f5;
+    color: #fff;
+    overflow: visible;
+}
+.gallery ul{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.gallery img{
+    width: 80px;
+    height: 100px;
+    transition: 0.3s;
+}
+.gallery li:hover img{
+    opacity: 1;
+    transform: scale(1.03);
+}
+.gallery li{
+    width: 80px;
+    overflow: hidden;
+}
+.quick a{
+    display: block;
+    margin: 30px 0;
+}
+.quick img{
+    width: 230px;
+    height: 100px;
+    transition: 0.3s;
+    opacity: 0.9;
+}
+.site-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.site-footer img{
+    width: 120px;
+    height: 60px;
+}
+.copyright{
+    text-transform: uppercase;
+    
+}
+select{
+    margin-right: 20px;
+    text-align: center;
+}
+.layer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: none;
+}
+.layer>div{
+    width: 600px;
+    background-color: hsl(50, 75%, 90%);
+    border-radius: 50px;
+    margin: 130px;
+    padding: 30px;
+}
+.layer h3{
+    border-bottom: 1px solid #fdb858;
+    padding: 10px;
+}
+.layer p{
+    margin-top: 20px;
+    text-align: justify;
+}
+.layer__btn{
+    text-align: right;
+    margin-top: 20px;
+}
+.layer__close>span{
+    display: inline-block;
+    border: 1px solid #fdb858;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
 }
