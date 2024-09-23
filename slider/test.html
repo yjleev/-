@@ -12,9 +12,52 @@
         .frame{
             width: 800px;
             height: 350px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 50px auto;
         }
         .slider{
+            position: relative;
+            transition: 0.5s ease-in-out;
+        }
+        .slider>img{
+            position: absolute;
+            transition: 0.5s ease-in-out;
+        }
+        .slider>img:nth-child(1){
+            left: 0;
+        }
+        .slider>img:nth-child(2){
+            left: calc(100%);
+        }
+        .slider>img:nth-child(3){
+            left: calc(100%*2);
+        }
+        .arrow{
+            margin-top: 150px;
+            width: 800px;
             display: flex;
+            justify-content: space-between;
+            opacity: 0.85;
+        }
+        .arrow>img{
+            width: 50px;
+            z-index: 0;
+        }
+        .btns{
+            width: 350px;
+            height: 15px;
+            display: flex;
+            justify-content: space-between;
+            margin: 110px auto;
+        }
+        .btn{
+            width: 100px;
+            height: 15px;
+            border-radius: 5px;
+            background-color: silver;
+            z-index: 0;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -25,16 +68,101 @@
             <img src="../images/slide02.jpg" alt="slide2">
             <img src="../images/slide03.jpg" alt="slide3">
         </div>
+        <div class="arrow">
+            <img src="../images/arrow_left.png" alt="arrow_left">
+            <img src="../images/arrow_right.png" alt="arrow_right">
+        </div>
+        <div class="btns">
+            <div class="btn1 btn"></div>
+            <div class="btn2 btn"></div>
+            <div class="btn3 btn"></div>
+        </div>
     </div>
     <script>
         const slider = document.querySelector('.slider');
-        const slide01 = document.querySelector('.slider>img:nth-child(1)');
-        const slide02 = document.querySelector('.slider>img:nth-child(2)');
-        const slide03 = document.querySelector('.slider>img:nth-child(3)');
-        let move = 0;
-        setInterval(()=>{
-            s
+        const slide = document.querySelectorAll('.slider>img');
+        const slide01 = slide[0];
+        const slide02 = slide[1];
+        const slide03 = slide[2];
+        const arrow = document.querySelector('.arrow');
+        const arrow_left = document.querySelector('.arrow>img:first-child');
+        const arrow_right = document.querySelector('.arrow>img:last-child');
+        const btns = document.querySelector('.btns');
+        const btn = document.querySelectorAll('.btn');
+        const btn1 = btn[0];
+        const btn2 = btn[1];
+        const btn3 = btn[2];
+        let page = 0;
+
+        const addImg = ()=>{
+            if(page == 1){  
+                page++;
+                slider.removeChild(slide01);   
+                slider.appendChild(slide01);
+            }
+            else if(page == 2){
+                page++;
+                slider.removeChild(slide02);
+                slider.appendChild(slide02);
+            }
+            else if(page == 3){
+                page = 1;
+                slider.removeChild(slide03);
+                slider.appendChild(slide03);
+            }
+            else if(page == 0){
+                page++;
+                slider.style.transform = 'translate(-800px)';
+            }
+        }
+
+        const autoSlide =()=>{
+            setInterval(()=>{
+                addImg();
+            },4000);
+        }
+
+        arrow.addEventListener('click', (e)=>{
+            if(e.target == arrow_left){
+                if(page == 1){  
+                    page = 3;
+                    slider.removeChild(slide03);   
+                    slider.prepend(slide03);
+                }
+                else if(page == 2){
+                    page--;
+                    slider.removeChild(slide01);
+                    slider.prepend(slide01);
+                }
+                else if(page == 3){
+                    page --;
+                    slider.removeChild(slide02);
+                    slider.prepend(slide02);
+                }
+                else if(page == 0){
+                    page=3;
+                    slider.style.transform = 'translate(-800px)';
+                }
+            }
+            else if(e.target == arrow_right){
+                addImg();
+            }
+            console.log(page)
+        });
+
+        btns.addEventListener('click', (e)=>{
+            if(e.target == btn1){
+
+            }
+            else if(e.target == btn2){
+
+            }
+            else if(e.target == btn3){
+                
+            }
         })
+
+        autoSlide();//처음 왼쪽 // btn1
     </script>
 </body>
 </html>
