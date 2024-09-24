@@ -12,7 +12,7 @@
         .frame{
             width: 800px;
             height: 350px;
-            overflow: hidden;
+            /* overflow: hidden; */
             border-radius: 15px;
             margin: 50px auto;
         }
@@ -44,7 +44,7 @@
             width: 50px;
             z-index: 0;
         }
-        .btns{
+        /* .btns{
             width: 350px;
             height: 15px;
             display: flex;
@@ -58,7 +58,7 @@
             background-color: silver;
             z-index: 0;
             opacity: 0.8;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -72,104 +72,54 @@
             <img src="../images/arrow_left.png" alt="arrow_left">
             <img src="../images/arrow_right.png" alt="arrow_right">
         </div>
-        <div class="btns">
+        <!-- <div class="btns">
             <div class="btn1 btn"></div>
             <div class="btn2 btn"></div>
             <div class="btn3 btn"></div>
-        </div>
+        </div> -->
     </div>
     <script>
-        const slider = document.querySelector('.slider');
-        const slide = document.querySelectorAll('.slider>img');
-        const slide01 = slide[0];
-        const slide02 = slide[1];
-        const slide03 = slide[2];
-        const arrow = document.querySelector('.arrow');
-        const arrow_left = document.querySelector('.arrow>img:first-child');
-        const arrow_right = document.querySelector('.arrow>img:last-child');
-        const btns = document.querySelector('.btns');
-        const btn = document.querySelectorAll('.btn');
-        const btn1 = btn[0];
-        const btn2 = btn[1];
-        const btn3 = btn[2];
-        let page = 0;
+            const slider = document.querySelector('.slider');
+            const slide = document.querySelectorAll('.slider>img');
+            // const slide01 = slide[0];
+            // const slide02 = slide[1];
+            // const slide03 = slide[2];
+            const arrow = document.querySelector('.arrow');
+            const arrow_left = document.querySelector('.arrow>img:first-child');
+            const arrow_right = document.querySelector('.arrow>img:last-child');
+            // const btns = document.querySelector('.btns');
+            // const btn = document.querySelectorAll('.btn');
+            // const btn1 = btn[0];
+            // const btn2 = btn[1];
+            // const btn3 = btn[2];
+            let page = 0, current;
 
-        const addImg = ()=>{
-            if(page == 1){  
-                page++;
-                slider.removeChild(slide01);   
-                slider.appendChild(slide01);
-            }
-            else if(page == 2){
-                page++;
-                slider.removeChild(slide02);
-                slider.appendChild(slide02);
-            }
-            else if(page == 3){
-                page = 1;
-                slider.removeChild(slide03);
-                slider.appendChild(slide03);
-            }
-            else if(page == 0){
-                page++;
-                slider.style.transform = 'translate(-800px)';
-            }
-        }
+            slider.style.transform = 'translate(-800px)'
+            slider.removeChild(slide[2]);
+            slider.prepend(slide[2]);//기본 세팅
 
-        const autoSlide =()=>{
-            setInterval(()=>{
-                addImg();
-            },4000);
-        }
+            const addImg = (child)=>{
+                current = slider.child;
+                slider.removeChild(current);
+                slider.appendChild(current);
+            }
 
-        arrow.addEventListener('click', (e)=>{
-            if(e.target == arrow_left){
-                if(page == 1){  
-                    page = 3;
-                    slider.removeChild(slide03);   
-                    slider.prepend(slide03);
+            const autoSlide =()=>{
+                setInterval(()=>{
+                    addImg(slide[0]);
+                },3000);
+            }
+
+            arrow.addEventListener('click', (e)=>{
+                if(e.target == arrow_left){
+                    addImg(slide[2])
                 }
-                else if(page == 2){
-                    page--;
-                    slider.removeChild(slide01);
-                    slider.prepend(slide01);
+                else if(e.target == arrow_right){
+                    addImg(slide[0]);
                 }
-                else if(page == 3){
-                    page --;
-                    slider.removeChild(slide02);
-                    slider.prepend(slide02);
-                }
-                else if(page == 0){
-                    page = 2;
-                    slider.style.transform = 'translate(-800px)';
-                    slider.removeChild(slide03);
-                    slider.prepend(slide03);
-                    
-                    setTimeout(()=>{
-                        slider.removeChild(slide02);
-                        slider.prepend(slide02);
-                    },250)
-                }
-            }
-            else if(e.target == arrow_right){
-                addImg();
-            }
+            },);
 
-        },);
-
-        btns.addEventListener('click', (e)=>{
-            if(e.target == btn1){
-
-            }
-            else if(e.target == btn2){
-
-            }
-            else if(e.target == btn3){
-                
-            }
-        })
-
-        autoSlide();//처음 왼쪽 // btn1
+            autoSlide();//처음 왼쪽 // btn1
     </script>
 </body>
 </html>
