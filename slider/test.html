@@ -140,15 +140,22 @@
                     slider.prepend(slide02);
                 }
                 else if(page == 0){
-                    page=3;
+                    page = 2;
                     slider.style.transform = 'translate(-800px)';
+                    slider.removeChild(slide03);
+                    slider.prepend(slide03);
+                    
+                    setTimeout(()=>{
+                        slider.removeChild(slide02);
+                        slider.prepend(slide02);
+                    },250)
                 }
             }
             else if(e.target == arrow_right){
                 addImg();
             }
-            console.log(page)
-        });
+
+        },);
 
         btns.addEventListener('click', (e)=>{
             if(e.target == btn1){
