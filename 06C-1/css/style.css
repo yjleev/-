@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul, li {
+    list-style: none;
+}
+img {
+    vertical-align: middle;
+}
+/* 공통사항 */
+.container {
+    width: 1000px;
+    display: flex;
+}
+
+/* 사이트 상단영역 */
+
+.site-header {
+    width: 200px;
+    background-color: #f5f5f5;
+}
+.site-header a {
+    display: block;
+    text-align: center;
+}
+.gnb a {
+    display: block;
+    transition: 0.3s;
+}
+.gnb>ul>li>a {
+    font-size: 17px;
+    line-height: 50px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+.gnb>ul>li:hover>a {
+    color: #fff;
+    background-color: #1787e4;
+}
+
+.gnb>ul>li>ul a {
+    line-height: 40px;
+    border-bottom: 1px dotted #333;
+    background-color: #fff;
+}
+
+.gnb>ul>li>ul a:hover {
+    color: #fff;
+    background-color: #ccc;
+}
+.gnb>ul>li {
+    height: 50px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+.gnb>ul>li:hover{
+    height: 172.5px;
+}
+.content-wrap {
+    width: 800px;
+}
+.slide {
+    height: 350px;
+    position: relative;
+}
+.slide li {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.slide li:nth-child(1){
+    background-image: url(../images/slide01.png);
+}
+.slide li:nth-child(2){
+    background-image: url(../images/slide02.png);
+}
+.slide li:nth-child(3){
+    background-image: url(../images/slide03.png);
+}
